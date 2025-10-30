@@ -1,0 +1,327 @@
+[
+    {
+        "id": "289eb9d37ee1f421",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e9fb678bd0a14f42",
+        "type": "mqtt out",
+        "z": "289eb9d37ee1f421",
+        "name": "envio de payload",
+        "topic": "olha-para-ca-iot-fazenda",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "4386c0106301e18f",
+        "x": 930,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "d7534354044b1243",
+        "type": "ui-button",
+        "z": "289eb9d37ee1f421",
+        "group": "29256dada935c533",
+        "name": "DESLIGAR",
+        "label": "DESLIGAR",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "B",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 490,
+        "y": 460,
+        "wires": [
+            [
+                "e9fb678bd0a14f42",
+                "5187d688ea1c6c81",
+                "9934ba670f8d2471"
+            ]
+        ]
+    },
+    {
+        "id": "5187d688ea1c6c81",
+        "type": "debug",
+        "z": "289eb9d37ee1f421",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "83a9424ec1685127",
+        "type": "change",
+        "z": "289eb9d37ee1f421",
+        "name": "LIGAR",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "A",
+                "fromt": "str",
+                "to": "LIGADO",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 320,
+        "wires": [
+            [
+                "0e7ae791f4abefa0"
+            ]
+        ]
+    },
+    {
+        "id": "9934ba670f8d2471",
+        "type": "change",
+        "z": "289eb9d37ee1f421",
+        "name": "DESLIGAR",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "B",
+                "fromt": "str",
+                "to": "DESLIGADO",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 910,
+        "y": 400,
+        "wires": [
+            [
+                "0e7ae791f4abefa0"
+            ]
+        ]
+    },
+    {
+        "id": "0e7ae791f4abefa0",
+        "type": "ui-text",
+        "z": "289eb9d37ee1f421",
+        "group": "29256dada935c533",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "EXIBIR ESTADO",
+        "label": "ESTADO: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-right",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "x": 1170,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "3a20f19e2d14f3f3",
+        "type": "ui-button",
+        "z": "289eb9d37ee1f421",
+        "group": "29256dada935c533",
+        "name": "LIGAR",
+        "label": "LIGAR",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "A",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 470,
+        "y": 320,
+        "wires": [
+            [
+                "5187d688ea1c6c81",
+                "e9fb678bd0a14f42",
+                "83a9424ec1685127"
+            ]
+        ]
+    },
+    {
+        "id": "4386c0106301e18f",
+        "type": "mqtt-broker",
+        "name": "LEDS",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "29256dada935c533",
+        "type": "ui-group",
+        "name": "BOTAOS",
+        "page": "bf1c09f5dadf3f45",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "bf1c09f5dadf3f45",
+        "type": "ui-page",
+        "name": "BOTAO_teste",
+        "ui": "dfee838d36721e71",
+        "path": "/page7",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "218fbde199809a56",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "dfee838d36721e71",
+        "type": "ui-base",
+        "name": "POTENCIOMETRO",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": true
+    },
+    {
+        "id": "218fbde199809a56",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    }
+]
